@@ -1,0 +1,641 @@
+/* ==========================================================================
+   GLOBAL RESETS & CSS VARIABLES
+   ========================================================================== */
+:root {
+  --bg-color: #080c14;
+  --card-bg: #101725;
+  --card-border: #1e293b;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --btn-bg: #1e293b;
+  --btn-hover: #334155;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav__list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav__link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-content .header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0; /* Reset header padding for title */
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.introduction {
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn, .btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: var(--btn-bg);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: 1px solid var(--card-border);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover, .btn-social:hover {
+  background-color: var(--btn-hover);
+  border-color: var(--text-muted);
+}
+
+.social-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-image-container {
+  flex-shrink: 0;
+}
+
+.hero-portrait {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   EXPERIENCE SECTION (TIMELINE FORMAT)
+   ========================================================================== */
+.experience-section {
+  margin-bottom: 4rem;
+}
+
+.tab-controls {
+  display: flex;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.6rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--btn-bg);
+  color: var(--text-main);
+}
+
+.tab-panel {
+  display: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+}
+
+/* Force vertical column stacking inside tab panel */
+.tab-panel {
+  display: none;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+}
+
+.tab-panel.active {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Individual Card (Horizontal Row) */
+.timeline-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+}
+
+/* Left Column: Logo + Vertical Line */
+.timeline-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0; /* Prevents image from growing/shrinking */
+}
+
+.timeline-logo {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  object-fit: contain;
+  background-color: #ffffff;
+  border: 1px solid var(--card-border);
+  z-index: 2;
+}
+
+/* Connecting Line between Logos */
+.timeline-line {
+  width: 2px;
+  background-color: var(--card-border);
+  flex-grow: 1;
+  margin-top: 0.5rem;
+  margin-bottom: -2rem;
+}
+
+.timeline-item:last-child .timeline-line {
+  display: none;
+}
+
+/* Right Column: Text Content */
+.timeline-content {
+  flex: 1;
+}
+
+.company-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+
+.company-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.duration {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.job-title {
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.description-list {
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.description-list li {
+  margin-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   SECTION HEADERS
+   ========================================================================== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  
+}
+
+.view-more-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.view-more-link:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   PROJECTS GRID SECTION
+   ========================================================================== */
+.projects-section {
+  margin-bottom: 4rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-image-container {
+  width: 100%;
+  height: 180px;
+  background-color: #0d131f;
+  overflow: hidden;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-description {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.tag {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #334155;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.project-btn {
+  padding: 0.4rem 0.8rem;
+  background-color: #1e293b;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  transition: background-color 0.2s ease;
+}
+
+.project-btn:hover {
+  background-color: var(--btn-hover);
+}
+
+/* ==========================================================================
+   CODING ACTIVITY SECTION
+   ========================================================================== */
+.contributions-section {
+  margin-bottom: 4rem;
+}
+
+.contribution-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.graph-placeholder {
+  width: 100%;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #334155;
+  border-radius: 8px;
+  background-color: #0b0f17;
+}
+
+.placeholder-content {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.graph-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  border-top: 1px solid var(--card-border);
+  padding-top: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.copyright {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 640px) {
+  .hero-section {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-buttons {
+    justify-content: center;
+  }
+
+  .hero-portrait {
+    width: 140px;
+    height: 170px;
+  }
+
+  .timeline-card {
+    flex-direction: column;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}
+/* ==========================================================================
+   CODING ACTIVITY SECTION
+   ========================================================================== */
+.main-title {
+  margin-bottom: 1.5rem;
+}
+
+.activity-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.github-graph-img {
+  width: 100%;
+  min-width: 650px;
+  height: auto;
+  display: block;
+}
+
+.loading-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 1rem 0;
+}
+
+.contribution-card {
+  background-color: var(--card-bg, #101725);
+  border: 1px solid var(--card-border, #1e293b);
+  border-radius: 12px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.view-more-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.view-more-link:hover {
+  color: var(--accent, #38bdf8);
+}
+/* ==========================================================================
+   LEETCODE HEATMAP GRID STYLES
+   ========================================================================== */
+.lc-calendar-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-flow: column;
+  gap: 3px;
+  padding-top: 0.5rem;
+  min-width: 650px;
+}
+
+.lc-square {
+  width: 11px;
+  height: 11px;
+  background-color: #1e293b;
+  border-radius: 2px;
+}
+
+.lc-square.level-1 {
+  background-color: #075985;
+}
+
+.lc-square.level-2 {
+  background-color: #0284c7;
+}
+
+.lc-square.level-3 {
+  background-color: #38bdf8;
+}
+/* ==========================================================================
+   CONTACT SECTION STYLES
+   ========================================================================== */
+.contact-section {
+  margin-bottom: 4rem;
+}
+
+.contact-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.contact-description {
+  color: var(--text-muted);
+  max-width: 520px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #080c14;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  padding: 0.65rem 1.4rem;
+
+}
+
+.btn-primary:hover {
+  background-color: #7dd3fc;
+  border-color: #7dd3fc;
+  color: #080c14;
+}
+.contact-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem; /* Adds space between the label and SVG icon */
+  padding: 0.65rem 1.25rem;
+  background-color: var(--card-bg, #1e293b);
+  border: 1px solid var(--card-border, #334155);
+  border-radius: 8px;
+  color: var(--text-main, #f8fafc);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-social:hover {
+  background-color: #334155;
+  border-color: var(--accent, #38bdf8);
+}
+
+.btn-social svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
